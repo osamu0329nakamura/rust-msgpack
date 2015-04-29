@@ -870,8 +870,8 @@ mod test {
 
     #[test]
     fn test_circular_isize() {
-      assert_msgpack_circular!(isize, 123is);
-      assert_msgpack_circular!(isize, -123is);
+      assert_msgpack_circular!(isize, 123isize);
+      assert_msgpack_circular!(isize, -123isize);
     }
 
     #[test]
@@ -893,8 +893,8 @@ mod test {
     #[test]
     fn test_circular_map() {
       let mut v = HashMap::new();
-      v.insert(1is, 2is);
-      v.insert(3is, 4is);
+      v.insert(1isize, 2isize);
+      v.insert(3isize, 4isize);
       assert_msgpack_circular!(HashMap<isize, isize>, v);
     }
 
