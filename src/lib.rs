@@ -6,7 +6,7 @@
 
 extern crate serialize;
 
-use std::io::{BufReader, MemWriter, IoResult, IoError, InvalidInput};
+use std::io::{BufReader, IoResult, IoError, InvalidInput};
 use std::str::from_utf8;
 use std::mem;
 use std::num::ToPrimitive;
@@ -539,7 +539,7 @@ impl<'a> Encoder<'a> {
     }
 
     pub fn to_msgpack<T: Encodable>(t: &T) -> IoResult<Vec<u8>> {
-        let mut m = MemWriter::new();
+        let mut m = Vec::new();
         {
             let mut encoder = Encoder::new(&mut m as &mut Writer);
             try!(t.encode(&mut encoder));
