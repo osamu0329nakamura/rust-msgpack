@@ -6,7 +6,8 @@
 
 extern crate serialize;
 
-use std::io::{BufReader, IoResult, IoError, InvalidInput};
+use std::io::{BufReader, IoResult, IoError, Error};
+use std::io::ErrorKind;
 use std::str::from_utf8;
 use std::mem;
 use std::num::ToPrimitive;
@@ -41,8 +42,8 @@ fn read_double(rd: &mut Reader) -> IoResult<f64> {
     rd.read_be_u64().map(|v| unsafe { mem::transmute(v) })
 }
 
-pub fn _invalid_input(s: &'static str) -> IoError {
-    IoError{kind: InvalidInput, desc: s, detail: None}
+pub fn _invalid_input(s: &'static str) -> Error {
+    Error::new(InvalidInput, s)
 }
 
 /// A structure to decode Msgpack from a reader.
@@ -512,8 +513,8 @@ impl<R: Reader> serialize::Decoder for Decoder<R> {
         self.read_tuple_arg(idx, f)
     }
 
-    fn error(&mut self, _err: &str) -> IoError {
-        IoError {kind: InvalidInput, desc: "ApplicationError", detail: None}
+    fn error(&mut self, _err: &str) -> Error {
+        Error::new(InvalidInput, "ApplicationError")
     }
 }
 
