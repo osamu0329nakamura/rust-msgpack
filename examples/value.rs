@@ -1,6 +1,6 @@
 extern crate msgpack;
 
-use std::old_io::File;
+use std::io::File;
 use std::os::args;
 
 fn main() {

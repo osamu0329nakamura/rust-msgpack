@@ -6,7 +6,7 @@
 
 extern crate serialize;
 
-use std::old_io::{BufReader, MemWriter, IoResult, IoError, InvalidInput};
+use std::io::{BufReader, MemWriter, IoResult, IoError, InvalidInput};
 use std::str::from_utf8;
 use std::mem;
 use std::num::ToPrimitive;

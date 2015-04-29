@@ -1,6 +1,6 @@
 use super::{Value, _invalid_input};
 use serialize::{Encodable, Decodable, Encoder, Decoder};
-use std::old_io::{IoError, IoResult};
+use std::io::{IoError, IoResult};
 
 pub enum RpcMessage {
   RpcRequest      {msgid: u32, method: String, params: Vec<Value>}, // 0
