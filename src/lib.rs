@@ -46,7 +46,7 @@ fn read_double(rd: &mut Reader) -> IoResult<f64> {
 }
 
 pub fn _invalid_input(s: &'static str) -> Error {
-    Error::new(InvalidInput, s)
+    Error::new(ErrorKind::InvalidInput, s)
 }
 
 /// A structure to decode Msgpack from a reader.
@@ -515,7 +515,7 @@ impl<R: Reader> serialize::Decoder for Decoder<R> {
     }
 
     fn error(&mut self, _err: &str) -> Error {
-        Error::new(InvalidInput, "ApplicationError")
+        Error::new(ErrorKind::InvalidInput, "ApplicationError")
     }
 }
 
