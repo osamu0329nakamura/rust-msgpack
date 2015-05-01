@@ -6,7 +6,7 @@
 
 extern crate serialize;
 
-use std::io::{BufReader, IoResult, IoError, Error};
+use std::io::{BufReader, IoResult, Error};
 use std::io::ErrorKind;
 use std::str::from_utf8;
 use std::mem;
@@ -255,8 +255,6 @@ impl<'a, R: Reader> Decoder<R> {
 }
 
 impl<R: Reader> serialize::Decoder for Decoder<R> {
-    type Error = IoError;
-
     #[inline(always)]
     fn read_nil(&mut self) -> IoResult<()> {
         match self._read_byte() {
@@ -650,8 +648,6 @@ impl<'a> Encoder<'a> {
 }
 
 impl<'a> serialize::Encoder for Encoder<'a> {
-    type Error = IoError;
-
     fn emit_nil(&mut self) -> IoResult<()> { self.wr.write_u8(0xc0) }
 
     #[inline(always)]
