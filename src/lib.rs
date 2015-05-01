@@ -6,13 +6,15 @@
 
 extern crate serialize;
 
-use std::io::{BufReader, IoResult, Error};
+use std::io::{BufReader, Result, Error};
 use std::io::ErrorKind;
 use std::str::from_utf8;
 use std::mem;
 use std::num::ToPrimitive;
 
 use serialize::{Encodable, Decodable};
+
+type IoResult<T> = Result<T, Error>;
 
 #[cfg(todo)]
 mod rpc;
