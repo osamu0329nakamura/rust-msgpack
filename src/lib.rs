@@ -4,14 +4,15 @@
 #![allow(unused_must_use, dead_code)]
 #![feature(io, core, rustc_private, custom_derive)]
 
+extern crate rustc;
 extern crate serialize;
 
 use std::io::{BufReader, Result, Error};
 use std::io::ErrorKind;
 use std::str::from_utf8;
 use std::mem;
-use std::num::ToPrimitive;
 
+use rustc::util::num::ToPrimitive;
 use serialize::{Encodable, Decodable};
 
 type IoResult<T> = Result<T, Error>;
