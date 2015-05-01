@@ -2,7 +2,7 @@
 
 #![crate_type = "lib"]
 #![allow(unused_must_use, dead_code)]
-#![feature(io, core, rustc_private)]
+#![feature(io, core, rustc_private, custom_derive)]
 
 extern crate serialize;
 
@@ -922,7 +922,7 @@ mod test {
       assert_msgpack_circular!(char, 'a');
     }
 
-    #[derive(Encodable,Decodable,PartialEq,Debug)]
+    #[derive(RustEncodable,RustDecodable,PartialEq,Debug)]
     struct S {
       f: u8,
       g: u16,
@@ -960,7 +960,7 @@ mod test {
         assert_msgpack_circular!(String, from_char(0x10000, 'a'));
     }
 
-    #[derive(Encodable,Decodable,PartialEq,Show)]
+    #[derive(RustEncodable, RustDecodable, PartialEq, Debug)]
     enum Animal {
         Dog,
         Frog(String, usize),
