@@ -1,10 +1,12 @@
 extern crate msgpack;
 
-use std::io::File;
-use std::os::args;
+use std::fs::File;
+use std::env::args;
+use std::io::Read;
 
 fn main() {
-  let contents = File::open(&Path::new(args()[1].clone())).read_to_end().ok().unwrap();
+    let mut contents = vec![];
+    File::open(args().next().expect("")).unwrap().read_to_end(&mut contents).ok().unwrap();
   println!("{:?}", contents);
 
 /* todo
